@@ -105,15 +105,13 @@ function HomePage() {
               <article
                 className={`sheet-card tone-${skill.color}`}
                 key={skill.slug}
-                style={{ "--sheet-rotate": `${index % 2 === 0 ? -2 : 2}deg`, "--sheet-shift": `${index * 22}px` }}
+                style={{ "--sheet-rotate": `${index % 2 === 0 ? -1.5 : 1.5}deg` }}
               >
                 <Link className="sheet-card-link" to={`/skills/${skill.slug}`}>
                   <span className="skill-icon-sheet">{skill.icon}</span>
+                  <span className="sheet-agency">{skill.agency}</span>
                   <strong>{skill.name}</strong>
                 </Link>
-                <a className="mini-link" href={skill.repo} target="_blank" rel="noreferrer">
-                  Repo
-                </a>
               </article>
             ))}
           </div>
