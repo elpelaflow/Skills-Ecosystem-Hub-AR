@@ -102,20 +102,7 @@ function HomePage() {
           </div>
         </div>
         <aside className="hero-stage">
-          <div className="hero-stack">
-            <span className="panel-label">Skills destacadas</span>
-            {skills.slice(0, 3).map((skill) => (
-              <article className={`hero-stack-card tone-${skill.color}`} key={skill.slug}>
-                <Link className="hero-stack-link" to={`/skills/${skill.slug}`}>
-                  <span className="skill-icon-sheet">{skill.icon}</span>
-                  <div className="hero-stack-copy">
-                    <small>{skill.agency}</small>
-                    <strong>{skill.name}</strong>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
+          <FeaturedCarousel items={skills.slice(0, 4)} />
         </aside>
       </section>
 
@@ -548,6 +535,54 @@ function PathwayCard({ title, steps, tone }) {
         ))}
       </div>
     </article>
+  );
+}
+
+function FeaturedCarousel({ items }) {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % items.length);
+    }, 3200);
+    return () => window.clearInterval(timer);
+  }, [items.length]);
+
+  const active = items[activeIndex];
+
+  return (
+    <div className="featured-carousel">
+      <span className="panel-label">Skills destacadas</span>
+      <article className={`featured-card tone-${active.color}`}>
+        <Link className="featured-card-link" to={`/skills/${active.slug}`}>
+          <div className="featured-card-head">
+            <span className="featured-icon">{active.icon}</span>
+            <div className="featured-head-copy">
+              <small>{active.agency}</small>
+              <strong>{active.name}</strong>
+            </div>
+          </div>
+          <p>{active.value}</p>
+        </Link>
+        <div className="featured-meta-row">
+          <span className="status-pill">{active.status}</span>
+          <span className="status-pill subtle">{active.version}</span>
+        </div>
+      </article>
+      <div className="featured-track">
+        {items.map((skill, index) => (
+          <button
+            className={`featured-chip ${index === activeIndex ? "active" : ""}`}
+            key={skill.slug}
+            onClick={() => setActiveIndex(index)}
+            type="button"
+          >
+            <span>{skill.icon}</span>
+            <strong>{skill.name}</strong>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
