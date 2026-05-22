@@ -184,6 +184,7 @@ h2 {
 }
 
 .hero-text,
+.hero-subline,
 .section-copy,
 .detail-panel p,
 .framework-card p,
@@ -197,6 +198,12 @@ h2 {
   margin: 1.1rem 0 0;
   max-width: 62ch;
   font-size: 1.05rem;
+}
+
+.hero-subline {
+  margin: 0;
+  max-width: 50ch;
+  font-size: 0.98rem;
 }
 
 .hero-actions {
@@ -517,6 +524,21 @@ h2 {
   margin: 0 0 1rem;
   color: var(--muted);
   line-height: 1.55;
+}
+
+.skill-microcopy,
+.skill-value {
+  margin: 0 0 1rem;
+  color: var(--ink);
+  line-height: 1.52;
+}
+
+.skill-microcopy {
+  font-size: 0.96rem;
+}
+
+.skill-value {
+  max-width: 58ch;
 }
 
 .skill-hero {

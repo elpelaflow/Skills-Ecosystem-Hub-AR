@@ -88,6 +88,10 @@ function HomePage() {
               Ver Mapa
             </Link>
           </div>
+          <p className="hero-subline">
+            Repos independientes, una sola narrativa visual y una arquitectura común para automatizar
+            fricción legal-operativa.
+          </p>
           <div className="hero-metrics">
             <Metric value={skills.length} label="skills activas" />
             <Metric value={Object.keys(categorySummaries).length} label="categorias" />
@@ -142,7 +146,7 @@ function HomePage() {
         <SectionHeading
           eyebrow="Entradas"
           title="Rutas reales por skill"
-          copy="Cada skill tiene su propia URL dentro del hub. Esto permite compartir vistas individuales sin perder el contexto del ecosistema."
+          copy="Cada skill tiene su propia URL dentro del hub y link directo a su repo en GitHub. Eso permite compartir piezas puntuales sin perder la lectura sistémica."
         />
         <div className="skills-ribbon">
           {skills.map((skill) => (
@@ -266,9 +270,10 @@ function SkillPage() {
           <p className="eyebrow">{skill.category}</p>
           <h1 className="skill-title-hero">{skill.name}</h1>
           <p className="hero-text">{skill.tagline}</p>
+          <p className="skill-value">{skill.value}</p>
           <div className="hero-actions">
-            <a className="button primary" href={skill.repo}>
-              Abrir repo local
+            <a className="button primary" href={skill.repo} target="_blank" rel="noreferrer">
+              Ver repo en GitHub
             </a>
             <Link className="button ghost" to="/skills">
               Volver al catalogo
@@ -291,7 +296,17 @@ function SkillPage() {
               <DetailBlock title="Outputs principales" items={skill.outputs} />
             </div>
             <div className="detail-columns">
+              <div className="detail-block">
+                <h4>Para quien sirve</h4>
+                <p>{skill.audience}</p>
+              </div>
               <DetailBlock title="Tags" items={skill.tags} />
+            </div>
+            <div className="detail-columns">
+              <div className="detail-block">
+                <h4>Que destraba</h4>
+                <p>{skill.value}</p>
+              </div>
               <div className="detail-block">
                 <h4>Relacion dentro del sistema</h4>
                 <p>
@@ -451,7 +466,7 @@ function ReposPage() {
               <span className="repo-pill">{skill.maturity}</span>
             </div>
             <div>
-              <a className="repo-link" href={skill.repo}>
+              <a className="repo-link" href={skill.repo} target="_blank" rel="noreferrer">
                 Abrir repo
               </a>
             </div>
@@ -488,6 +503,7 @@ function SkillCard({ skill }) {
       </div>
       <h3 className="skill-title">{skill.name}</h3>
       <p className="skill-tagline">{skill.tagline}</p>
+      <p className="skill-microcopy">{skill.value}</p>
       <div className="skill-tags">
         {skill.tags.slice(0, 4).map((tag) => (
           <span className="tag" key={tag}>
