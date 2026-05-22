@@ -50,7 +50,9 @@ function Shell({ children }) {
     <>
       <header className="topbar">
         <Link className="brand" to="/">
-          <span className="brand-mark" aria-hidden="true">🇦🇷</span>
+          <span className="brand-mark" aria-hidden="true">
+            <img alt="" src="./assets/argentina-flag.svg" />
+          </span>
           <span className="brand-text">
             <strong>AR Skills Ecosystem</strong>
             <small>Legal + Tech + Bureaucracy Flows</small>
