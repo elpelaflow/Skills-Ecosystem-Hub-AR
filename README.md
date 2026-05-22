@@ -1,6 +1,6 @@
 # Skills Ecosystem Hub AR
 
-Sitio web estático para visualizar la familia de skills legales, regulatorias y operativas orientadas a Argentina.
+Aplicación web Vite + React para visualizar la familia de skills legales, regulatorias y operativas orientadas a Argentina.
 
 ## Objetivo
 
@@ -8,16 +8,45 @@ La web funciona como:
 
 - portada del ecosistema;
 - catálogo navegable de skills;
-- ficha individual de cada repo;
+- ficha individual por repo;
 - mapa de relaciones;
-- índice de repos.
+- índice de repos;
+- capa de contexto para compartir una skill sin perder el sistema completo.
+
+## Stack
+
+- Vite
+- React
+- React Router
+
+## Rutas
+
+- `/`
+- `/skills`
+- `/skills/:slug`
+- `/categorias`
+- `/categorias/:slug`
+- `/mapa`
+- `/framework`
+- `/repos`
 
 ## Estructura
 
-- `index.html`: layout principal del sitio.
-- `styles.css`: sistema visual, layout y responsive.
-- `app.js`: datos, filtros, navegación y render dinámico.
+- `index.html`: entrada del sitio.
+- `src/main.jsx`: bootstrap de React.
+- `src/App.jsx`: layout, rutas y vistas.
+- `src/data/skills.js`: dataset del ecosistema.
+- `src/styles.css`: sistema visual del hub.
 
 ## Uso
 
-Abrí `index.html` en un navegador o servilo con cualquier servidor estático.
+```bash
+npm install
+npm run dev
+```
+
+Para build de producción:
+
+```bash
+npm run build
+```
