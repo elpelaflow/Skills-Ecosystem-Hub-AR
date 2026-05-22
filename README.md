@@ -19,6 +19,18 @@ La web funciona como:
 - React
 - React Router
 
+## Compatibilidad con GitHub Pages
+
+La app quedó preparada para GitHub Pages usando `HashRouter`.
+
+Eso implica rutas como:
+
+- `/#/skills`
+- `/#/skills/nda`
+- `/#/categorias`
+
+La ventaja es que GitHub Pages puede servir la app sin configuración extra de fallback para rutas internas.
+
 ## Rutas
 
 - `/`
@@ -50,3 +62,13 @@ Para build de producción:
 ```bash
 npm run build
 ```
+
+## Publicación en GitHub Pages
+
+Flujo simple:
+
+1. correr `npm run build`
+2. subir el contenido de `dist/` a la rama que uses para Pages
+3. configurar GitHub Pages para servir esa rama o carpeta
+
+Como la app usa `HashRouter` y `base: "./"`, no depende de una raíz absoluta del sitio.
