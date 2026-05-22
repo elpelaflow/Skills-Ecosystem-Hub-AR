@@ -72,3 +72,23 @@ Flujo simple:
 3. configurar GitHub Pages para servir esa rama o carpeta
 
 Como la app usa `HashRouter` y `base: "./"`, no depende de una raíz absoluta del sitio.
+
+## Deploy automático
+
+El repo ya incluye un workflow en:
+
+- `.github/workflows/deploy-pages.yml`
+
+Qué hace:
+
+1. instala dependencias con `npm ci`
+2. compila con `npm run build`
+3. publica `dist/` en GitHub Pages
+
+Para activarlo en GitHub:
+
+1. subir este repo a GitHub
+2. ir a `Settings -> Pages`
+3. en `Build and deployment`, elegir `GitHub Actions`
+
+Después de eso, cada push a `master` publica la web automáticamente.
