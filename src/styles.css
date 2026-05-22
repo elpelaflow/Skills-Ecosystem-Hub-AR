@@ -331,6 +331,27 @@ h2 {
   gap: 0.35rem;
 }
 
+.skill-icon-sheet,
+.ribbon-icon,
+.skill-card-icon,
+.category-icon,
+.hero-skill-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(25, 22, 17, 0.08);
+  font-weight: 700;
+}
+
+.hero-skill-icon {
+  width: 3.1rem;
+  height: 3.1rem;
+  font-size: 1.2rem;
+}
+
 .sheet-card:nth-child(1) { top: 10%; left: 4%; }
 .sheet-card:nth-child(2) { top: 22%; left: 27%; }
 .sheet-card:nth-child(3) { top: 40%; left: 12%; }
@@ -385,6 +406,13 @@ h2 {
 .category-card h3 {
   margin: 0.3rem 0 0.65rem;
   font-size: 1.34rem;
+}
+
+.category-card-topline,
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .category-card ul {
@@ -571,6 +599,12 @@ h2 {
   line-height: 1.55;
 }
 
+.skill-card-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .skill-microcopy,
 .skill-value {
   margin: 0 0 1rem;
@@ -584,6 +618,36 @@ h2 {
 
 .skill-value {
   max-width: 58ch;
+}
+
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.2rem 0 1rem;
+}
+
+.status-strip.compact {
+  margin: 0 0 1rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff8ee;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.status-pill.subtle {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  border: 1px solid rgba(25, 22, 17, 0.08);
 }
 
 .skill-hero {

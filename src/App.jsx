@@ -9,6 +9,7 @@ import {
   useParams,
 } from "react-router-dom";
 import {
+  categoryIcons,
   categorySlugs,
   categorySummaries,
   getRelatedSkills,
@@ -107,6 +108,7 @@ function HomePage() {
                 style={{ "--sheet-rotate": `${index % 2 === 0 ? -3 : 3}deg`, "--sheet-shift": `${index * 10}px` }}
               >
                 <Link className="sheet-card-link" to={`/skills/${skill.slug}`}>
+                  <span className="skill-icon-sheet">{skill.icon}</span>
                   <span>{skill.category}</span>
                   <strong>{skill.name}</strong>
                 </Link>
@@ -128,7 +130,10 @@ function HomePage() {
         <div className="category-grid">
           {Object.entries(categorySummaries).map(([name, summary]) => (
             <article className="category-card" key={name}>
-              <span className="panel-label">{skills.filter((skill) => skill.category === name).length} skills</span>
+              <div className="category-card-topline">
+                <span className="category-icon">{categoryIcons[name]}</span>
+                <span className="panel-label">{skills.filter((skill) => skill.category === name).length} skills</span>
+              </div>
               <h3>{name}</h3>
               <p>{summary}</p>
               <div className="tag-strip">
@@ -169,9 +174,10 @@ function HomePage() {
           {skills.map((skill) => (
             <article className={`ribbon-card tone-${skill.color}`} key={skill.slug}>
               <Link className="ribbon-card-link" to={`/skills/${skill.slug}`}>
+                <span className="ribbon-icon">{skill.icon}</span>
                 <small>{skill.agency}</small>
                 <strong>{skill.name}</strong>
-                <span>{skill.maturity}</span>
+                <span>{skill.version}</span>
               </Link>
               <a className="mini-link" href={skill.repo} target="_blank" rel="noreferrer">
                 GitHub
@@ -290,9 +296,17 @@ function SkillPage() {
       <section className={`skill-hero tone-${skill.color}`}>
         <div className="skill-hero-copy">
           <p className="eyebrow">{skill.category}</p>
-          <h1 className="skill-title-hero">{skill.name}</h1>
+          <div className="hero-title-row">
+            <span className={`hero-skill-icon tone-${skill.color}`}>{skill.icon}</span>
+            <h1 className="skill-title-hero">{skill.name}</h1>
+          </div>
           <p className="hero-text">{skill.tagline}</p>
           <p className="skill-value">{skill.value}</p>
+          <div className="status-strip">
+            <span className="status-pill">{skill.status}</span>
+            <span className="status-pill subtle">{skill.version}</span>
+            <span className="status-pill subtle">{skill.agency}</span>
+          </div>
           <div className="hero-actions">
             <a className="button primary" href={skill.repo} target="_blank" rel="noreferrer">
               Ver repo en GitHub
@@ -305,6 +319,8 @@ function SkillPage() {
         <div className="skill-hero-meta">
           <MetaRow label="Organismo" value={skill.agency} />
           <MetaRow label="Marco" value={skill.law} />
+          <MetaRow label="Version" value={skill.version} />
+          <MetaRow label="Estado" value={skill.status} />
           <MetaRow label="Madurez" value={skill.maturity} />
           <MetaRow label="Tipo" value={skill.type} />
         </div>
@@ -372,7 +388,10 @@ function CategoriesPage() {
       <div className="category-grid">
         {Object.entries(categorySummaries).map(([name, summary]) => (
           <article className="category-card" key={name}>
-            <span className="panel-label">{skills.filter((skill) => skill.category === name).length} skills</span>
+            <div className="category-card-topline">
+              <span className="category-icon">{categoryIcons[name]}</span>
+              <span className="panel-label">{skills.filter((skill) => skill.category === name).length} skills</span>
+            </div>
             <h3>{name}</h3>
             <p>{summary}</p>
             <ul>
@@ -539,12 +558,19 @@ function SkillCard({ skill }) {
     <article className={`skill-card tone-${skill.color}`}>
       <Link className="skill-card-link" to={`/skills/${skill.slug}`}>
         <div className="skill-card-top">
-          <span>{skill.category}</span>
+          <span className="skill-card-kicker">
+            <span className="skill-card-icon">{skill.icon}</span>
+            {skill.category}
+          </span>
           <span>{skill.agency}</span>
         </div>
         <h3 className="skill-title">{skill.name}</h3>
         <p className="skill-tagline">{skill.tagline}</p>
         <p className="skill-microcopy">{skill.value}</p>
+        <div className="status-strip compact">
+          <span className="status-pill">{skill.status}</span>
+          <span className="status-pill subtle">{skill.version}</span>
+        </div>
         <div className="skill-tags">
           {skill.tags.slice(0, 4).map((tag) => (
             <span className="tag" key={tag}>
