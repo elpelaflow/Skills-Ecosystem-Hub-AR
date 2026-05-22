@@ -50,9 +50,9 @@ function Shell({ children }) {
     <>
       <header className="topbar">
         <Link className="brand" to="/">
-          <span className="brand-mark">AR</span>
+          <span className="brand-mark" aria-hidden="true">🇦🇷</span>
           <span className="brand-text">
-            <strong>Skills Ecosystem</strong>
+            <strong>AR Skills Ecosystem</strong>
             <small>Legal + Tech + Bureaucracy Flows</small>
           </span>
         </Link>
