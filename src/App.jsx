@@ -100,17 +100,16 @@ function HomePage() {
           </div>
         </div>
         <aside className="hero-stage">
-          <div className="floating-sheets">
-            {skills.slice(0, 3).map((skill, index) => (
-              <article
-                className={`sheet-card tone-${skill.color}`}
-                key={skill.slug}
-                style={{ "--sheet-rotate": `${index % 2 === 0 ? -1.5 : 1.5}deg` }}
-              >
-                <Link className="sheet-card-link" to={`/skills/${skill.slug}`}>
+          <div className="hero-stack">
+            <span className="panel-label">Skills destacadas</span>
+            {skills.slice(0, 3).map((skill) => (
+              <article className={`hero-stack-card tone-${skill.color}`} key={skill.slug}>
+                <Link className="hero-stack-link" to={`/skills/${skill.slug}`}>
                   <span className="skill-icon-sheet">{skill.icon}</span>
-                  <span className="sheet-agency">{skill.agency}</span>
-                  <strong>{skill.name}</strong>
+                  <div className="hero-stack-copy">
+                    <small>{skill.agency}</small>
+                    <strong>{skill.name}</strong>
+                  </div>
                 </Link>
               </article>
             ))}
