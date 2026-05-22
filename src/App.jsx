@@ -101,15 +101,14 @@ function HomePage() {
         </div>
         <aside className="hero-stage">
           <div className="floating-sheets">
-            {skills.slice(0, 5).map((skill, index) => (
+            {skills.slice(0, 3).map((skill, index) => (
               <article
                 className={`sheet-card tone-${skill.color}`}
                 key={skill.slug}
-                style={{ "--sheet-rotate": `${index % 2 === 0 ? -3 : 3}deg`, "--sheet-shift": `${index * 10}px` }}
+                style={{ "--sheet-rotate": `${index % 2 === 0 ? -2 : 2}deg`, "--sheet-shift": `${index * 22}px` }}
               >
                 <Link className="sheet-card-link" to={`/skills/${skill.slug}`}>
                   <span className="skill-icon-sheet">{skill.icon}</span>
-                  <span>{skill.category}</span>
                   <strong>{skill.name}</strong>
                 </Link>
                 <a className="mini-link" href={skill.repo} target="_blank" rel="noreferrer">

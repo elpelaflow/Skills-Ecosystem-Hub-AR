@@ -271,7 +271,7 @@ h2 {
 
 .hero-stage {
   position: relative;
-  min-height: 520px;
+  min-height: 460px;
 }
 
 .hero-stage::before,
@@ -307,14 +307,14 @@ h2 {
   inset: auto auto 0 0;
   display: grid;
   gap: 0.35rem;
-  width: min(100%, 320px);
+  width: min(100%, 300px);
   padding: 1.15rem;
   border-radius: 26px;
   border: 1px solid rgba(25, 22, 17, 0.08);
   background: rgba(255, 253, 248, 0.88);
   text-decoration: none;
   box-shadow: 0 24px 40px rgba(39, 29, 17, 0.09);
-  transform: translate(calc(var(--sheet-shift) * 1.8), calc(var(--sheet-shift) * -1.1)) rotate(var(--sheet-rotate));
+  transform: translate(calc(var(--sheet-shift) * 1.2), calc(var(--sheet-shift) * -0.55)) rotate(var(--sheet-rotate));
   animation: floatSheet 8s ease-in-out infinite;
 }
 
@@ -352,15 +352,11 @@ h2 {
   font-size: 1.2rem;
 }
 
-.sheet-card:nth-child(1) { top: 10%; left: 4%; }
-.sheet-card:nth-child(2) { top: 22%; left: 27%; }
-.sheet-card:nth-child(3) { top: 40%; left: 12%; }
-.sheet-card:nth-child(4) { top: 56%; left: 38%; }
-.sheet-card:nth-child(5) { top: 8%; left: 48%; }
+.sheet-card:nth-child(1) { top: 12%; left: 4%; }
+.sheet-card:nth-child(2) { top: 34%; left: 24%; }
+.sheet-card:nth-child(3) { top: 56%; left: 12%; }
 .sheet-card:nth-child(2) { animation-delay: -1.4s; }
 .sheet-card:nth-child(3) { animation-delay: -2.2s; }
-.sheet-card:nth-child(4) { animation-delay: -3.1s; }
-.sheet-card:nth-child(5) { animation-delay: -4.4s; }
 
 .sheet-card span,
 .ribbon-card small,
@@ -838,10 +834,10 @@ h2 {
 
 @keyframes floatSheet {
   0%, 100% {
-    transform: translate(calc(var(--sheet-shift) * 1.8), calc(var(--sheet-shift) * -1.1)) rotate(var(--sheet-rotate));
+    transform: translate(calc(var(--sheet-shift) * 1.2), calc(var(--sheet-shift) * -0.55)) rotate(var(--sheet-rotate));
   }
   50% {
-    transform: translate(calc(var(--sheet-shift) * 1.8), calc(var(--sheet-shift) * -1.1 - 10px)) rotate(calc(var(--sheet-rotate) * 0.85));
+    transform: translate(calc(var(--sheet-shift) * 1.2), calc(var(--sheet-shift) * -0.55 - 6px)) rotate(calc(var(--sheet-rotate) * 0.9));
   }
 }
 
@@ -900,11 +896,11 @@ h2 {
   }
 
   .hero-stage {
-    min-height: 420px;
+    min-height: 360px;
   }
 
   .sheet-card {
     width: 100%;
-    max-width: 260px;
+    max-width: 240px;
   }
 }
