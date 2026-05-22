@@ -101,15 +101,19 @@ function HomePage() {
         <aside className="hero-stage">
           <div className="floating-sheets">
             {skills.slice(0, 5).map((skill, index) => (
-              <Link
+              <article
                 className={`sheet-card tone-${skill.color}`}
                 key={skill.slug}
                 style={{ "--sheet-rotate": `${index % 2 === 0 ? -3 : 3}deg`, "--sheet-shift": `${index * 10}px` }}
-                to={`/skills/${skill.slug}`}
               >
-                <span>{skill.category}</span>
-                <strong>{skill.name}</strong>
-              </Link>
+                <Link className="sheet-card-link" to={`/skills/${skill.slug}`}>
+                  <span>{skill.category}</span>
+                  <strong>{skill.name}</strong>
+                </Link>
+                <a className="mini-link" href={skill.repo} target="_blank" rel="noreferrer">
+                  Repo
+                </a>
+              </article>
             ))}
           </div>
         </aside>
@@ -123,7 +127,7 @@ function HomePage() {
         />
         <div className="category-grid">
           {Object.entries(categorySummaries).map(([name, summary]) => (
-            <Link className="category-card" key={name} to={`/categorias/${categorySlugs[name]}`}>
+            <article className="category-card" key={name}>
               <span className="panel-label">{skills.filter((skill) => skill.category === name).length} skills</span>
               <h3>{name}</h3>
               <p>{summary}</p>
@@ -137,7 +141,20 @@ function HomePage() {
                     </span>
                   ))}
               </div>
-            </Link>
+              <div className="card-actions">
+                <Link className="mini-link" to={`/categorias/${categorySlugs[name]}`}>
+                  Ver categoría
+                </Link>
+                {skills
+                  .filter((skill) => skill.category === name)
+                  .slice(0, 2)
+                  .map((skill) => (
+                    <a className="mini-link subtle" href={skill.repo} key={skill.slug} target="_blank" rel="noreferrer">
+                      {skill.name}
+                    </a>
+                  ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -150,11 +167,16 @@ function HomePage() {
         />
         <div className="skills-ribbon">
           {skills.map((skill) => (
-            <Link className={`ribbon-card tone-${skill.color}`} key={skill.slug} to={`/skills/${skill.slug}`}>
-              <small>{skill.agency}</small>
-              <strong>{skill.name}</strong>
-              <span>{skill.maturity}</span>
-            </Link>
+            <article className={`ribbon-card tone-${skill.color}`} key={skill.slug}>
+              <Link className="ribbon-card-link" to={`/skills/${skill.slug}`}>
+                <small>{skill.agency}</small>
+                <strong>{skill.name}</strong>
+                <span>{skill.maturity}</span>
+              </Link>
+              <a className="mini-link" href={skill.repo} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+            </article>
           ))}
         </div>
       </section>
@@ -313,6 +335,11 @@ function SkillPage() {
                   Esta skill forma parte del cluster <strong>{skill.category}</strong> y se vincula con
                   otras piezas del ecosistema para cubrir el flujo completo.
                 </p>
+                <div className="card-actions">
+                  <a className="mini-link" href={skill.repo} target="_blank" rel="noreferrer">
+                    Abrir repositorio
+                  </a>
+                </div>
               </div>
             </div>
           </article>
@@ -344,7 +371,7 @@ function CategoriesPage() {
       />
       <div className="category-grid">
         {Object.entries(categorySummaries).map(([name, summary]) => (
-          <Link className="category-card" key={name} to={`/categorias/${categorySlugs[name]}`}>
+          <article className="category-card" key={name}>
             <span className="panel-label">{skills.filter((skill) => skill.category === name).length} skills</span>
             <h3>{name}</h3>
             <p>{summary}</p>
@@ -355,7 +382,20 @@ function CategoriesPage() {
                   <li key={skill.slug}>{skill.name}</li>
                 ))}
             </ul>
-          </Link>
+            <div className="card-actions">
+              <Link className="mini-link" to={`/categorias/${categorySlugs[name]}`}>
+                Explorar cluster
+              </Link>
+              {skills
+                .filter((skill) => skill.category === name)
+                .slice(0, 1)
+                .map((skill) => (
+                  <a className="mini-link subtle" href={skill.repo} key={skill.slug} target="_blank" rel="noreferrer">
+                    Repo ejemplo
+                  </a>
+                ))}
+            </div>
+          </article>
         ))}
       </div>
     </section>
@@ -496,22 +536,32 @@ function PathwayCard({ title, steps, tone }) {
 
 function SkillCard({ skill }) {
   return (
-    <Link className={`skill-card tone-${skill.color}`} to={`/skills/${skill.slug}`}>
-      <div className="skill-card-top">
-        <span>{skill.category}</span>
-        <span>{skill.agency}</span>
+    <article className={`skill-card tone-${skill.color}`}>
+      <Link className="skill-card-link" to={`/skills/${skill.slug}`}>
+        <div className="skill-card-top">
+          <span>{skill.category}</span>
+          <span>{skill.agency}</span>
+        </div>
+        <h3 className="skill-title">{skill.name}</h3>
+        <p className="skill-tagline">{skill.tagline}</p>
+        <p className="skill-microcopy">{skill.value}</p>
+        <div className="skill-tags">
+          {skill.tags.slice(0, 4).map((tag) => (
+            <span className="tag" key={tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Link>
+      <div className="card-actions">
+        <Link className="mini-link" to={`/skills/${skill.slug}`}>
+          Ver ficha
+        </Link>
+        <a className="mini-link subtle" href={skill.repo} target="_blank" rel="noreferrer">
+          Ver repo
+        </a>
       </div>
-      <h3 className="skill-title">{skill.name}</h3>
-      <p className="skill-tagline">{skill.tagline}</p>
-      <p className="skill-microcopy">{skill.value}</p>
-      <div className="skill-tags">
-        {skill.tags.slice(0, 4).map((tag) => (
-          <span className="tag" key={tag}>
-            {tag}
-          </span>
-        ))}
-      </div>
-    </Link>
+    </article>
   );
 }
 
