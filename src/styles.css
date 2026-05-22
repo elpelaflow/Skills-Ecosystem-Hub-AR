@@ -852,8 +852,8 @@ h2 {
 }
 
 .tone-olive {
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 249, 229, 0.97));
-  box-shadow: inset 0 0 0 1px rgba(241, 195, 76, 0.14);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 208, 0.99));
+  box-shadow: inset 0 0 0 1px rgba(241, 195, 76, 0.24);
 }
 
 .tone-ink {
